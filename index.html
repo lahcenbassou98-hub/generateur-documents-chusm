@@ -915,160 +915,222 @@
 
         // --- LOGIQUE POUR CONVOCATION ---
         function initializeConvocationForm() {
-            const sections = {
-                DPI: [ { v1: "M. KERBID El Mehdi", v2: "Secrétaire Général du CHU Souss-Massa", v3: "président de la commission d'appel d'offres", v8: "mkerbid@chusm.ma" }, { v1: "M. BATAAL Ali", v2: "Chef de la division des systèmes d'information au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "abataal@chusm.ma" }, { v1: "M. HOUCINE JABBARI", v2: "Contrôleur d'Etat près le CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "h.jabbari@depp.gov.ma" }, { v1: "Mme. RAMI Rajaa", v2: "Chef de la Division des Affaires Financières au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "rrami@chusm.ma" }, { v1: "M. OUAYA Lahcen", v2: "Chef du Service de la commande publique au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "louaya@chusm.ma" }, { v1: "M. EL BAAMRANI Said", v2: "Chef du Service du Budget et de la Comptabilité au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "selbaamrani@chusm.ma" }, { v1: "M. BELLA Abdoullah", v2: "Chef de la Division des Affaires Administratives et Juridiques au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "abella@chusm.ma" } ],
-                Pharmacie: [ { v1: "M. KERBID El Mehdi", v2: "Secrétaire Général du CHU Souss-Massa", v3: "président de la commission d'appel d'offres", v8: "mkerbid@chusm.ma" }, { v1: "M. BATAAL Ali", v2: "Chef de la division des systèmes d'information au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "abataal@chusm.ma" }, { v1: "M. HOUCINE JABBARI", v2: "Contrôleur d'Etat près le CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "h.jabbari@depp.gov.ma" }, { v1: "Mme. RAMI Rajaa", v2: "Chef de la Division des Affaires Financières au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "rrami@chusm.ma" }, { v1: "M. OUAYA Lahcen", v2: "Chef du Service de la commande publique au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "louaya@chusm.ma" }, { v1: "M. EL YOUBI Zouhir", v2: "Chef du Service de la Pharmacie centrale au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "zelyoubi@chusm.ma" }, { v1: "Mme. ELMKIESS Zaineb", v2: "Pharmacienne au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "zelmkiess@chusm.ma" } ],
-                Informatique: [ { v1: "M. KERBID El Mehdi", v2: "Secrétaire Général du CHU Souss-Massa", v3: "président de la commission d'appel d'offres", v8: "mkerbid@chusm.ma" }, { v1: "M. BATAAL Ali", v2: "Chef de la division des systèmes d'information au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "abataal@chusm.ma" }, { v1: "M. HOUCINE JABBARI", v2: "Contrôleur d'Etat près le CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "h.jabbari@depp.gov.ma" }, { v1: "Mme. RAMI Rajaa", v2: "Chef de la Division des Affaires Financières au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "rrami@chusm.ma" }, { v1: "M. OUAYA Lahcen", v2: "Chef du Service de la commande publique au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "louaya@chusm.ma" }, { v1: "Mme. EZ-ZAYDY Ikrame", v2: "Chef du Service de développement informatique au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "iez-zaydy@chusm.ma" }, { v1: "M. MOUSSAFIR Mustafa", v2: "Ingénieur d'Etat 1er Grade au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "mmoussafir@chusm.ma" }, { v1: "M. SLIMANI Ilias", v2: "Ingénieur d'Etat 1er Grade au CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "islimani@chusm.ma" } ]
-            };
-            const pdfConfigConv = { leftMargin: 20, rightMargin: 20, topMargin: 20, bottomMargin: 30, lineSpacing: 7, paragraphSpacing: 4, fontSize: 11, fontName: 'Cambria' };
-            const sectionButtonsDivConv = document.getElementById('convocationSectionButtons');
-            const recipientsDivConv = document.getElementById('convocationRecipients');
-            const generatePdfButtonConv = document.getElementById('generateConvocationPdfButton');
-            let activeSectionButtonConv = null;
+    const sections = {
+        "Président & Rep Finance": [
+            { v1: "M. KERBID El Mehdi", v2: "Secrétaire Général du CHU Souss-Massa", v3: "suppléant en cas d'absence du président de la commission", v8: "mkerbid@gmail.com" },
+            { v1: "M. HOUCINE JABBARI", v2: "Contrôleur d'Etat près le CHU Souss-Massa", v3: "membre de la commission d'appel d'offres", v8: "h.jabbari@depp.gov.ma" }
+        ],
+        "DAF": [
+            { v1: "Mme. RAMI Rajaa", v2: "Chef de la division des affaires financières du CHU Souss-Massa", v3: "membre de droit", v8: "rajaa.ramichua@gmail.com" },
+            { v1: "M. OUAYA Lahcen", v2: "Chef du Service de la commande publique du CHU Souss-Massa", v3: "membre de droit", v8: "ouayalahcen@gmail.com" },
+            { v1: "Mme. LACHGAR Rima", v2: "Administrateur 2ème Grade au service de la commande publique du CHU Souss-Massa", v3: "membre de droit", v8: "rimalachgar@gmail.com" },
+            { v1: "Mme. IBN ZAID Fatima EZ-Zahra", v2: "Responsable du Service de la comptabilité du CHU Souss-Massa", v3: "membre de droit", v8: "ibnzaidfatimazahra@gmail.com" }
+        ],
+        "DPI": [
+            { v1: "M. BELLA Abdoullah", v2: "Chef de la division du patrimoine et de l'ingénierie au CHU Souss-Massa", v3: "membre de droit", v8: "bellaabdoullahchusm@gmail.com" },
+            { v1: "M. EL BAAMRANI Said", v2: "Chef de service de patrimoine, logistique et approvisionnement au CHU Souss-Massa", v3: "membre de droit", v8: "saelbaamrani@gmail.com" },
+            { v1: "Mme. AMAZIANE Fatima Zahrae", v2: "Ingénieur 1er grade au Service de patrimoine, logistique et approvisionnement au CHU Souss-Massa", v3: "membre de droit", v8: "f.zahrae.amaziane@gmail.com" }
+        ],
+        "PHARMACIE": [
+            { v1: "M. EL YOUBI Zouhair", v2: "Chef de Service de la pharmacie centrale du CHU Souss-Massa", v3: "membre de droit", v8: "zouhair.elyoubi1@gmail.com" },
+            { v1: "M. NAFIA Kamal", v2: "Pharmacien au CHU Souss-Massa", v3: "membre de droit", v8: "kamalnaf367@gmail.com" },
+            { v1: "M. BOUHAL Mohamed Choukri", v2: "Pharmacien au CHU Souss-Massa", v3: "membre de droit", v8: "mohamedchoukri.d@gmail.com" },
+            { v1: "Mme. ABATOUR Latifa", v2: "Pharmacienne au CHU Souss-Massa", v3: "membre de droit", v8: "abatourlatifa@gmail.com" },
+            { v1: "Mme. EL MKIESS Zaineb", v2: "Pharmacienne au CHU Souss-Massa", v3: "membre de droit", v8: "elmkiesszaineb@gmail.com" }
+        ],
+        "INFORMATIQUE": [
+            { v1: "Mme. EZ-ZAYDY Ikrame", v2: "Chef de Service des systèmes d'information et de l'informatique au CHU Souss-Massa", v3: "membre de droit", v8: "ikrameezzaydy@gmail.com" },
+            { v1: "M. MOUSSAFIR Mustafa", v2: "Ingénieur 1er grade au Service des systèmes d'information et de l'informatique au CHU Souss-Massa", v3: "membre de droit", v8: "moussafirmustafa@gmail.com" },
+            { v1: "M. SLIMANI Ilias", v2: "Ingénieur 1er grade au Service des systèmes d'information et de l'informatique au CHU Souss-Massa", v3: "membre de droit", v8: "iliasslimani@gmail.com" }
+        ],
+        "AUTRES": [
+            { v1: "M. BATAAL Ali", v2: "Directeur de l'hôpital des spécialités relevant du CHU Souss-Massa", v3: "membre de droit", v8: "alibataal1@gmail.com" },
+            { v1: "M. BOUJELLABA Said", v2: "Directeur de l'hôpital Mère-Enfant relevant du CHU Souss-Massa", v3: "membre de droit", v8: "saad.bouj2020@gmail.com" }
+        ]
+    };
+    const pdfConfigConv = { leftMargin: 20, rightMargin: 20, topMargin: 20, bottomMargin: 30, lineSpacing: 7, paragraphSpacing: 4, fontSize: 11, fontName: 'Cambria' };
+    const sectionButtonsDivConv = document.getElementById('convocationSectionButtons');
+    const recipientsDivConv = document.getElementById('convocationRecipients');
+    const generatePdfButtonConv = document.getElementById('generateConvocationPdfButton');
+    let activeSectionButtonConv = null;
 
-            if (sectionButtonsDivConv && !sectionButtonsDivConv.hasChildNodes()) {
-                Object.keys(sections).forEach(sectionName => {
-                    const button = document.createElement('button');
-                    button.type = 'button'; button.textContent = sectionName;
-                    button.addEventListener('click', () => displayRecipientsConv(sectionName, button));
-                    sectionButtonsDivConv.appendChild(button);
-                });
-            }
-            
-            // Détacher les anciens écouteurs avant d'en ajouter de nouveaux pour éviter les duplications
-            const newGenerateBtnConv = generatePdfButtonConv.cloneNode(true);
-            generatePdfButtonConv.parentNode.replaceChild(newGenerateBtnConv, generatePdfButtonConv);
-            newGenerateBtnConv.addEventListener('click', handleGeneratePdfClickConv);
+    if (sectionButtonsDivConv && !sectionButtonsDivConv.hasChildNodes()) {
+        Object.keys(sections).forEach(sectionName => {
+            const button = document.createElement('button');
+            button.type = 'button'; button.textContent = sectionName;
+            button.addEventListener('click', () => displayRecipientsConv(sectionName, button));
+            sectionButtonsDivConv.appendChild(button);
+        });
+    }
+    
+    // Détacher les anciens écouteurs avant d'en ajouter de nouveaux pour éviter les duplications
+    const newGenerateBtnConv = generatePdfButtonConv.cloneNode(true);
+    generatePdfButtonConv.parentNode.replaceChild(newGenerateBtnConv, generatePdfButtonConv);
+    newGenerateBtnConv.addEventListener('click', handleGeneratePdfClickConv);
 
+    // Ajouter les champs de sélection dans le formulaire HTML
+    const form = document.getElementById('convocationFormInternal');
+    const detailsSection = form.querySelector('h2:nth-of-type(2)'); // Section "Détails de l'Appel d'Offres"
+    
+    // Créer les nouveaux champs de sélection
+    const typeContainer = document.createElement('div');
+    typeContainer.className = 'form-group';
+    typeContainer.innerHTML = `
+        <label for="convocationType">Type d'appel d'offres :</label>
+        <select id="convocationType" required>
+            <option value="national">National</option>
+            <option value="international">International</option>
+        </select>
+    `;
+    
+    const pricingContainer = document.createElement('div');
+    pricingContainer.className = 'form-group';
+    pricingContainer.innerHTML = `
+        <label for="convocationPricing">Type de marché :</label>
+        <select id="convocationPricing" required>
+            <option value="sur offre de prix">Sur offres de prix</option>
+            <option value="à majoration">À majoration</option>
+        </select>
+    `;
+    
+    // Insérer les nouveaux champs après l'objet de l'appel d'offres
+    const v5Field = form.querySelector('#convocationV5');
+    v5Field.parentNode.insertBefore(typeContainer, v5Field.nextSibling);
+    v5Field.parentNode.insertBefore(pricingContainer, typeContainer.nextSibling);
 
-            function formatDateFrConv(dateString) {
-                if (!dateString) return '';
-                try {
-                    const dateObj = new Date(dateString + "T00:00:00"); // Assurer que c'est traité comme date locale
-                    if (isNaN(dateObj.getTime())) { return dateString; }
-                    return dateObj.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                } catch (e) { return dateString; }
-            }
-            function formatTimeHmConv(timeString) { return timeString ? timeString.replace(':', 'h') : ''; }
-            function sanitizeFilenameConv(name) { return (name || '').replace(/[^a-zA-Z0-9_-]/g, '_').substring(0, 50); }
+    function formatDateFrConv(dateString) {
+        if (!dateString) return '';
+        try {
+            const dateObj = new Date(dateString + "T00:00:00");
+            if (isNaN(dateObj.getTime())) { return dateString; }
+            return dateObj.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        } catch (e) { return dateString; }
+    }
+    function formatTimeHmConv(timeString) { return timeString ? timeString.replace(':', 'h') : ''; }
+    function sanitizeFilenameConv(name) { return (name || '').replace(/[^a-zA-Z0-9_-]/g, '_').substring(0, 50); }
 
-            function displayRecipientsConv(sectionName, clickedButton) {
-                if (activeSectionButtonConv) activeSectionButtonConv.classList.remove('active');
-                clickedButton.classList.add('active'); activeSectionButtonConv = clickedButton;
-                recipientsDivConv.innerHTML = "";
+    function displayRecipientsConv(sectionName, clickedButton) {
+        if (activeSectionButtonConv) activeSectionButtonConv.classList.remove('active');
+        clickedButton.classList.add('active'); activeSectionButtonConv = clickedButton;
+        recipientsDivConv.innerHTML = "";
 
-                if (sections[sectionName] && sections[sectionName].length > 0) {
-                    const selectAllDiv = document.createElement('div'); selectAllDiv.className = 'select-all-group';
-                    const selectAllInput = document.createElement('input'); selectAllInput.type = 'checkbox'; selectAllInput.id = `conv-select-all-${sectionName}`;
-                    selectAllInput.addEventListener('change', function() { toggleSelectAllConv(this, sectionName); });
-                    const selectAllLabel = document.createElement('label'); selectAllLabel.htmlFor = selectAllInput.id; selectAllLabel.textContent = ' Tout sélectionner / Désélectionner';
-                    selectAllDiv.appendChild(selectAllInput); selectAllDiv.appendChild(selectAllLabel); recipientsDivConv.appendChild(selectAllDiv);
+        if (sections[sectionName] && sections[sectionName].length > 0) {
+            const selectAllDiv = document.createElement('div'); selectAllDiv.className = 'select-all-group';
+            const selectAllInput = document.createElement('input'); selectAllInput.type = 'checkbox'; selectAllInput.id = `conv-select-all-${sectionName}`;
+            selectAllInput.addEventListener('change', function() { toggleSelectAllConv(this, sectionName); });
+            const selectAllLabel = document.createElement('label'); selectAllLabel.htmlFor = selectAllInput.id; selectAllLabel.textContent = ' Tout sélectionner / Désélectionner';
+            selectAllDiv.appendChild(selectAllInput); selectAllDiv.appendChild(selectAllLabel); recipientsDivConv.appendChild(selectAllDiv);
 
-                    sections[sectionName].forEach((recipient, index) => {
-                        const cbDiv = document.createElement('div'); cbDiv.className = 'checkbox-group';
-                        const input = document.createElement('input'); input.type = 'checkbox'; input.name = 'convRecipient'; input.value = JSON.stringify(recipient); input.id = `conv-recipient-${sanitizeFilenameConv(sectionName)}-${index}`;
-                        const label = document.createElement('label'); label.htmlFor = input.id; label.textContent = ` ${recipient.v1 || 'N/A'}`;
-                        cbDiv.appendChild(input); cbDiv.appendChild(label); recipientsDivConv.appendChild(cbDiv);
-                    });
-                } else { recipientsDivConv.textContent = "Aucun destinataire."; }
-            }
-            function toggleSelectAllConv(selectAllCheckbox, sectionName) {
-                const isChecked = selectAllCheckbox.checked;
-                recipientsDivConv.querySelectorAll('input[name="convRecipient"]').forEach(cb => cb.checked = isChecked);
-            }
+            sections[sectionName].forEach((recipient, index) => {
+                const cbDiv = document.createElement('div'); cbDiv.className = 'checkbox-group';
+                const input = document.createElement('input'); input.type = 'checkbox'; input.name = 'convRecipient'; input.value = JSON.stringify(recipient); input.id = `conv-recipient-${sanitizeFilenameConv(sectionName)}-${index}`;
+                const label = document.createElement('label'); label.htmlFor = input.id; label.textContent = ` ${recipient.v1 || 'N/A'}`;
+                cbDiv.appendChild(input); cbDiv.appendChild(label); recipientsDivConv.appendChild(cbDiv);
+            });
+        } else { recipientsDivConv.textContent = "Aucun destinataire."; }
+    }
+    function toggleSelectAllConv(selectAllCheckbox, sectionName) {
+        const isChecked = selectAllCheckbox.checked;
+        recipientsDivConv.querySelectorAll('input[name="convRecipient"]').forEach(cb => cb.checked = isChecked);
+    }
 
-            function drawSinglePDFPageConv(pdfDoc, recipient, commonData) {
-                const { leftMargin, rightMargin, topMargin, lineSpacing, paragraphSpacing, fontSize, fontName } = pdfConfigConv;
-                const usableWidth = pdfDoc.internal.pageSize.getWidth() - leftMargin - rightMargin;
-                let y = topMargin;
+    function drawSinglePDFPageConv(pdfDoc, recipient, commonData) {
+        const { leftMargin, rightMargin, topMargin, lineSpacing, paragraphSpacing, fontSize, fontName } = pdfConfigConv;
+        const usableWidth = pdfDoc.internal.pageSize.getWidth() - leftMargin - rightMargin;
+        let y = topMargin;
 
-                pdfDoc.setFont(fontName); pdfDoc.setFontSize(fontSize);
-                const headerImgUrl = 'https://static.wixstatic.com/media/54eb1f_99f7a17eea9e4456a26645e79509a76d~mv2.png/v1/fill/w_1429,h_176,al_c,lg_1,q_85,enc_avif,quality_auto/54eb1f_99f7a17eea9e4456a26645e79509a76d~mv2.png';
-                const imgWidth = 180, imgHeight = 22;
-                pdfDoc.addImage(headerImgUrl, 'PNG', (pdfDoc.internal.pageSize.getWidth() - imgWidth) / 2, y - 10, imgWidth, imgHeight);
-                y += imgHeight + lineSpacing;
+        pdfDoc.setFont(fontName); pdfDoc.setFontSize(fontSize);
+        const headerImgUrl = 'https://static.wixstatic.com/media/54eb1f_99f7a17eea9e4456a26645e79509a76d~mv2.png/v1/fill/w_1429,h_176,al_c,lg_1,q_85,enc_avif,quality_auto/54eb1f_99f7a17eea9e4456a26645e79509a76d~mv2.png';
+        const imgWidth = 180, imgHeight = 22;
+        pdfDoc.addImage(headerImgUrl, 'PNG', (pdfDoc.internal.pageSize.getWidth() - imgWidth) / 2, y - 10, imgWidth, imgHeight);
+        y += imgHeight + lineSpacing;
 
-                pdfDoc.setFont(fontName, 'bold');
-                pdfDoc.text("A", pdfDoc.internal.pageSize.getWidth() / 2, y, { align: 'center' }); y += lineSpacing;
-                pdfDoc.text(recipient.v1 || "N/A", pdfDoc.internal.pageSize.getWidth() / 2, y, { align: 'center' }); y += lineSpacing;
-                pdfDoc.setFont(fontName, 'italic');
-                pdfDoc.text(recipient.v2 || "N/A", pdfDoc.internal.pageSize.getWidth() / 2, y, { align: 'center' }); y += lineSpacing * 2;
-                
-                pdfDoc.setFont(fontName, 'bold');
-                pdfDoc.text("Objet : Commission d'ouverture des plis", leftMargin, y); y += lineSpacing;
-                pdfDoc.setFont(fontName, 'normal');
-                pdfDoc.text(`Réf. : Appel d'Offres Ouvert N° ${commonData.v4 || 'N/A'}`, leftMargin, y); y += lineSpacing * 2;
+        pdfDoc.setFont(fontName, 'bold');
+        pdfDoc.text("A", pdfDoc.internal.pageSize.getWidth() / 2, y, { align: 'center' }); y += lineSpacing;
+        pdfDoc.text(recipient.v1 || "N/A", pdfDoc.internal.pageSize.getWidth() / 2, y, { align: 'center' }); y += lineSpacing;
+        pdfDoc.setFont(fontName, 'italic');
+        pdfDoc.text(recipient.v2 || "N/A", pdfDoc.internal.pageSize.getWidth() / 2, y, { align: 'center' }); y += lineSpacing * 2;
+        
+        pdfDoc.setFont(fontName, 'bold');
+        pdfDoc.text("Objet : Commission d'ouverture des plis", leftMargin, y); y += lineSpacing;
+        pdfDoc.setFont(fontName, 'normal');
+        pdfDoc.text(`Réf. : Appel d'Offres Ouvert ${commonData.type === 'international' ? 'International' : 'National'} N° ${commonData.v4 || 'N/A'}`, leftMargin, y); y += lineSpacing * 2;
 
-                const body1 = `Conformément à l'article 38 du Décret n° 2-22-431 du 15 Chaabane 1444 (8 mars 2023) relatif aux marchés publics, j'ai l'honneur de vous demander de bien vouloir assister, en tant que ${recipient.v3 || 'membre'}, à la séance d'ouverture des plis de l'appel d'offre ouvert national sur offre de prix N° ${commonData.v4 || 'N/A'} relatif à :`;
-                pdfDoc.text(body1, leftMargin, y, { maxWidth: usableWidth, align: 'justify' });
-                y += pdfDoc.getTextDimensions(body1, { maxWidth: usableWidth }).h + paragraphSpacing;
-                
-                pdfDoc.setFont(fontName, 'bold');
-                const objetAO = commonData.v5 || 'N/A';
-                pdfDoc.text(objetAO, pdfDoc.internal.pageSize.getWidth() / 2, y, { maxWidth: usableWidth, align: 'center' });
-                y += pdfDoc.getTextDimensions(objetAO, { maxWidth: usableWidth, align: 'center' }).h + paragraphSpacing;
+        const body1 = `Conformément à l'article 38 du Décret n° 2-22-431 du 15 Chaabane 1444 (8 mars 2023) relatif aux marchés publics, j'ai l'honneur de vous demander de bien vouloir assister, en tant que ${recipient.v3 || 'membre'}, à la séance d'ouverture des plis de l'appel d'offre ouvert ${commonData.type === 'international' ? 'international' : 'national'} ${commonData.pricing} N° ${commonData.v4 || 'N/A'} relatif à :`;
+        pdfDoc.text(body1, leftMargin, y, { maxWidth: usableWidth, align: 'justify' });
+        y += pdfDoc.getTextDimensions(body1, { maxWidth: usableWidth }).h + paragraphSpacing;
+        
+        pdfDoc.setFont(fontName, 'bold');
+        const objetAO = commonData.v5 || 'N/A';
+        pdfDoc.text(objetAO, pdfDoc.internal.pageSize.getWidth() / 2, y, { maxWidth: usableWidth, align: 'center' });
+        y += pdfDoc.getTextDimensions(objetAO, { maxWidth: usableWidth, align: 'center' }).h + paragraphSpacing;
 
-                pdfDoc.setFont(fontName, 'normal');
-                const body2 = `Cette séance aura lieu au siège de la Direction du Centre Hospitalo-Universitaire de Souss-Massa, sis à l'Institut Supérieur des Professions Infirmières et Techniques de Santé (ISPITS) Agadir, le ${formatDateFrConv(commonData.v6)} à ${formatTimeHmConv(commonData.v7)}.`;
-                pdfDoc.text(body2, leftMargin, y, { maxWidth: usableWidth, align: 'justify' });
-                y += pdfDoc.getTextDimensions(body2, { maxWidth: usableWidth }).h + paragraphSpacing;
-                
-                pdfDoc.setFont(fontName, 'italic');
-                const body3 = `Je porte à votre connaissance que le dossier de l'appel d'Offres vous est transmis par courriel à votre adresse : ${recipient.v8 || 'non spécifiée'}`;
-                pdfDoc.text(body3, leftMargin, y, { maxWidth: usableWidth, align: 'justify' });
-                y += pdfDoc.getTextDimensions(body3, { maxWidth: usableWidth }).h + lineSpacing * 1.5;
+        pdfDoc.setFont(fontName, 'normal');
+        const body2 = `Cette séance aura lieu au siège de la Direction du Centre Hospitalo-Universitaire de Souss-Massa, sis à l'Institut Supérieur des Professions Infirmières et Techniques de Santé (ISPITS) Agadir, le ${formatDateFrConv(commonData.v6)} à ${formatTimeHmConv(commonData.v7)}.`;
+        pdfDoc.text(body2, leftMargin, y, { maxWidth: usableWidth, align: 'justify' });
+        y += pdfDoc.getTextDimensions(body2, { maxWidth: usableWidth }).h + paragraphSpacing;
+        
+        pdfDoc.setFont(fontName, 'italic');
+        const body3 = `Je porte à votre connaissance que le dossier de l'appel d'Offres vous est transmis par courriel à votre adresse : ${recipient.v8 || 'non spécifiée'}`;
+        pdfDoc.text(body3, leftMargin, y, { maxWidth: usableWidth, align: 'justify' });
+        y += pdfDoc.getTextDimensions(body3, { maxWidth: usableWidth }).h + lineSpacing * 1.5;
 
-                pdfDoc.setFont(fontName, 'normal');
-                const salutation = `Veuillez agréer, ${recipient.v1 && recipient.v1.startsWith('Mme.') ? 'Madame' : 'Monsieur'}, l'expression de mes salutations distinguées.`;
-                pdfDoc.text(salutation, leftMargin, y, { maxWidth: usableWidth });
-                y += pdfDoc.getTextDimensions(salutation, { maxWidth: usableWidth }).h + lineSpacing * 2;
+        pdfDoc.setFont(fontName, 'normal');
+        const salutation = `Veuillez agréer, ${recipient.v1 && recipient.v1.startsWith('Mme.') ? 'Madame' : 'Monsieur'}, l'expression de mes salutations distinguées.`;
+        pdfDoc.text(salutation, leftMargin, y, { maxWidth: usableWidth });
+        y += pdfDoc.getTextDimensions(salutation, { maxWidth: usableWidth }).h + lineSpacing * 2;
 
-                const currentDate = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                pdfDoc.setFontSize(10);
-                pdfDoc.text(`Fait à Agadir, le ${currentDate}`, pdfDoc.internal.pageSize.getWidth() - rightMargin, y, { align: 'right' });
+        const currentDate = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        pdfDoc.setFontSize(10);
+        pdfDoc.text(`Fait à Agadir, le ........................`, pdfDoc.internal.pageSize.getWidth() - rightMargin, y, { align: 'right' });
 
-                const footerImgUrl = 'https://static.wixstatic.com/media/54eb1f_9d983c91a6c34ea1b871e7a357691871~mv2.png/v1/fill/w_1480,h_152,al_c,lg_1,q_85,enc_auto/54eb1f_9d983c91a6c34ea1b871e7a357691871~mv2.png';
-                const footerImgHeight = 20; // Adjusted height based on visual
-                pdfDoc.addImage(footerImgUrl, 'PNG', (pdfDoc.internal.pageSize.getWidth() - imgWidth) / 2, pdfDoc.internal.pageSize.getHeight() - footerImgHeight - (pdfConfigConv.bottomMargin / 2) +5, imgWidth, footerImgHeight);
-            }
+        const footerImgUrl = 'https://static.wixstatic.com/media/54eb1f_9d983c91a6c34ea1b871e7a357691871~mv2.png/v1/fill/w_1480,h_152,al_c,lg_1,q_85,enc_auto/54eb1f_9d983c91a6c34ea1b871e7a357691871~mv2.png';
+        const footerImgHeight = 20;
+        pdfDoc.addImage(footerImgUrl, 'PNG', (pdfDoc.internal.pageSize.getWidth() - imgWidth) / 2, pdfDoc.internal.pageSize.getHeight() - footerImgHeight - (pdfConfigConv.bottomMargin / 2) +5, imgWidth, footerImgHeight);
+    }
 
-            async function generateAndDownloadSinglePDFConv(recipient, commonData) {
-                const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-                drawSinglePDFPageConv(pdf, recipient, commonData);
-                pdf.save(`Convocation_${sanitizeFilenameConv(recipient.v1)}_${sanitizeFilenameConv(commonData.v4)}.pdf`);
-            }
-            async function generateCombinedPDFConv(selectedCheckboxes, commonData) {
-                const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-                selectedCheckboxes.forEach((cb, index) => {
-                    if (index > 0) pdf.addPage();
-                    drawSinglePDFPageConv(pdf, JSON.parse(cb.value), commonData);
-                });
-                pdf.save(`Convocations_Multiples_${sanitizeFilenameConv(commonData.v4)}.pdf`);
-            }
+    async function generateAndDownloadSinglePDFConv(recipient, commonData) {
+        const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+        drawSinglePDFPageConv(pdf, recipient, commonData);
+        pdf.save(`Convocation_${sanitizeFilenameConv(recipient.v1)}_${sanitizeFilenameConv(commonData.v4)}.pdf`);
+    }
+    async function generateCombinedPDFConv(selectedCheckboxes, commonData) {
+        const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+        selectedCheckboxes.forEach((cb, index) => {
+            if (index > 0) pdf.addPage();
+            drawSinglePDFPageConv(pdf, JSON.parse(cb.value), commonData);
+        });
+        pdf.save(`Convocations_Multiples_${sanitizeFilenameConv(commonData.v4)}.pdf`);
+    }
 
-            async function handleGeneratePdfClickConv() {
-                const btn = document.getElementById('generateConvocationPdfButton');
-                const selectedCBs = recipientsDivConv.querySelectorAll('input[name="convRecipient"]:checked');
-                const commonData = {
-                    v4: document.getElementById('convocationV4').value, v5: document.getElementById('convocationV5').value,
-                    v6: document.getElementById('convocationV6').value, v7: document.getElementById('convocationV7').value
-                };
-                if (selectedCBs.length === 0) { alert("Sélectionnez destinataire(s)."); return; }
-                if (!commonData.v4 || !commonData.v5 || !commonData.v6 || !commonData.v7) { alert("Remplissez les détails AO."); return; }
-                
-                btn.disabled = true; btn.textContent = 'Génération...';
-                try {
-                    if (selectedCBs.length === 1) await generateAndDownloadSinglePDFConv(JSON.parse(selectedCBs[0].value), commonData);
-                    else await generateCombinedPDFConv(Array.from(selectedCBs), commonData);
-                    alert(`${selectedCBs.length} convocation(s) générée(s)!`);
-                } catch (err) { alert(`Erreur: ${err.message}`); console.error(err); }
-                finally { btn.disabled = false; btn.textContent = 'Générer les Convocations PDF'; }
-            }
-             // Auto-select first section if available
-            if (sectionButtonsDivConv && sectionButtonsDivConv.firstChild && typeof sectionButtonsDivConv.firstChild.click === 'function') {
-                sectionButtonsDivConv.firstChild.click();
-            }
-        }
+    async function handleGeneratePdfClickConv() {
+        const btn = document.getElementById('generateConvocationPdfButton');
+        const selectedCBs = recipientsDivConv.querySelectorAll('input[name="convRecipient"]:checked');
+        const commonData = {
+            v4: document.getElementById('convocationV4').value,
+            v5: document.getElementById('convocationV5').value,
+            v6: document.getElementById('convocationV6').value,
+            v7: document.getElementById('convocationV7').value,
+            type: document.getElementById('convocationType').value,
+            pricing: document.getElementById('convocationPricing').value
+        };
+        if (selectedCBs.length === 0) { alert("Sélectionnez destinataire(s)."); return; }
+        if (!commonData.v4 || !commonData.v5 || !commonData.v6 || !commonData.v7) { alert("Remplissez les détails AO."); return; }
+        
+        btn.disabled = true; btn.textContent = 'Génération...';
+        try {
+            if (selectedCBs.length === 1) await generateAndDownloadSinglePDFConv(JSON.parse(selectedCBs[0].value), commonData);
+            else await generateCombinedPDFConv(Array.from(selectedCBs), commonData);
+            alert(`${selectedCBs.length} convocation(s) générée(s)!`);
+        } catch (err) { alert(`Erreur: ${err.message}`); console.error(err); }
+        finally { btn.disabled = false; btn.textContent = 'Générer les Convocations PDF'; }
+    }
+    
+    // Auto-select first section if available
+    if (sectionButtonsDivConv && sectionButtonsDivConv.firstChild && typeof sectionButtonsDivConv.firstChild.click === 'function') {
+        sectionButtonsDivConv.firstChild.click();
+    }
+}
 
         // --- LOGIQUE POUR BORDEREAU (V1 et Final) ---
         // Helper function for Bordereau PDF generation (V1 and Final)
